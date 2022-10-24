@@ -1,0 +1,79 @@
+<odoo>
+    <report
+            id="action_Laboratorio_etiqueta_report"
+            model="recepcion.recepcion"
+            string="EtiquetaAntidoping"
+            report_type="qweb-pdf"
+            name="Laboratorio.etiqueta_report_template"
+    />
+
+    <template id="etiqueta_report_template">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2>Etiqueta Antidoping</h2>
+                <br/>
+                <!--style-->
+
+                <t t-name="web.preview_externalreport">
+                    <t t-set="company" t-value="env.company"/>
+                    <t t-call="web.html_container">
+                        <t t-set="o" t-value="res_company"/>
+                        <t t-call="web.basic_layout">
+                            <div class="page">
+
+                                <div class="col-xs-8">
+                                    <table class="table table-condesed" style="border: 3px solid black !important;">
+
+                                        <t t-foreach="docs" t-as="o">
+
+                                            <div class="container">
+
+                                                <hr/>
+                                                <div class="row">
+
+                                                    <div class="col-12 border-left">
+                                                        <h4 class="text-center bg-dark text-white"></h4>
+                                                        <div class="row">
+
+                                                            <tr>
+                                                                <th>Numero de Empleado</th>
+                                                                <td>
+                                                                    <span t-field="o.responsable_nombre1"/>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Nombre Completo</th>
+                                                                <td>
+                                                                    <span t-field="o.responsable_nombre"/>
+                                                                </td>
+                                                            </tr>
+                                                            <!--prueba3-->
+                                                            <tr>
+                                                                <th>Folio</th>
+                                                                <td>
+                                                                    <span t-field="o.folio"/>
+                                                                </td>
+                                                            </tr>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </t>
+
+                                    </table>
+                                </div>
+
+                                <!--fin de prueba1-->
+                            </div>
+                        </t>
+                    </t>
+                </t>
+
+            </div>
+
+        </t>
+
+
+    </template>
+</odoo>

@@ -1,0 +1,353 @@
+<odoo>
+    <report
+            id="action_Laboratorio_custodia_report"
+            model="recepcion.recepcion"
+            string="CADENA DE DECUSTODIA"
+            report_type="qweb-pdf"
+            name="Laboratorio.custodia_report_template"
+            file="Laboratorio.custodia_report_template"
+    />
+
+    <!--record id="paperformat_base" model="report.paperformat">
+        <field name="name">Custodia</field>
+        <field name="format">Letter</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">80</field>
+        <field name="default" eval="True"/>
+    </record-->
+
+
+
+    <template id="custodia_report_template">
+        <t t-call="web.html_container">
+            <div class="page">
+
+                <t t-name="web.preview_externalreport">
+                    <t t-set="company" t-value="env.company"/>
+                    <t t-call="web.html_container">
+                        <t t-set="o" t-value="res_company"/>
+                        <t t-call="web.basic_layout">
+                            <center>
+                                <img style="float:left;" src='/Laboratorio/static/description/img.png'/>
+                                <img style="float:right;" src='/Laboratorio/static/description/s1.png'/>
+                            </center>
+                            <div class="page">
+                                <center>
+                                       <p>Gobierno de Nuevo León
+                                        Secretaría de Seguridad Del Estado de Nuevo León
+                                        Laboratorio de Análisis Clínicos “Seguridad Civil”
+                                    </p>
+                                    <p>CADENA DE CUSTODIA</p>
+                                    <p>Informacion del Personal a Evaluar</p>
+
+                                </center>
+                                <div class="col-xs-8">
+                                    <table class="table table-condesed" style="border: 3px solid black !important;">
+                                        <t t-foreach="docs" t-as="o">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <span class="small">Folio</span>
+                                                        <h6 class="font-weight-bold" t-field="o.folio"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Numero de Empleado</span>
+                                                        <h6 class="front-weight-bold"
+                                                            t-field="o.responsable_nombre1"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Nombre Completo</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Sexo</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre2"></h6>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <span class="small">Fecha de Nacimiento</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre3"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Edad</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre4"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Identificacion</span>
+                                                        <h6 class="font-weight-bold" t-field="o.motivo_de_examen"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Motivo del Examen</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.identificacion_que_presenta"></h6>
+                                                    </div>
+
+                                                </div>
+                                                <hr/>
+                                                <div class="row">
+
+                                                    <div class="col-12 border-left">
+                                                        <div class="row">
+                                                            <tr>
+                                                                <th>¿Consume algún medicamento?</th>
+                                                                <td>
+                                                                    <span t-field="o.consume_medicamentos"/>
+                                                                </td>
+                                                            </tr>
+                                                            <!--prueba3-->
+                                                            <tr>
+                                                                <th>En caso de afirmación, indique el nombre del
+                                                                    medicamento
+                                                                </th>
+                                                                <td>
+                                                                    <span t-field="o.nombre_del_medicamento"/>
+                                                                </td>
+                                                            </tr>
+                                                            <!--fin_prueba3-->
+                                                            <!--prueba4-->
+                                                            <tr>
+                                                                <th>Motivo por el cual toma el medicamento</th>
+
+                                                                <td>
+                                                                    <span t-field="o.motivo_de_consumo"/>
+                                                                </td>
+                                                            </tr>
+                                                            <!--fin_prueba4-->
+                                                            <!--prueba5-->
+                                                            <tr>
+                                                                <th>Nombre del médico o institución que indicó el
+                                                                    medicamento:
+                                                                </th>
+
+                                                                <td>
+                                                                    <span t-field="o.nombre_del_medico"/>
+                                                                </td>
+                                                            </tr>
+                                                            <!--fin_prueba5-->
+                                                            <!--contenido_text_-->
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </t>
+
+                                    </table>
+
+                                    <!--prueba-->
+                     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+                                    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <center>
+                                                <tr>
+                                                    <th>Nombre y Firma</th>
+                                                    <th>Huella Dactilar</th>
+                                                </tr>
+                                            </center>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                    <center>
+                                        <h6>Recolección de muestra.</h6>
+                                    </center>
+                                    <table class="table table-hover">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Lugar</th>
+                                                <th>Fecha</th>
+                                                <th>Hora</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Tipo de muestra</th>
+                                                <th>Color de muestra</th>
+                                                <th>Volumen del Frasco primario</th>
+                                                <th>Folio Frasco</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Supervisor Ocular de Recoleccion y Entrega de muestra para
+                                                    Analisis
+                                                </th>
+
+                                                <th>Firma</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <center>
+                                        <h6>Análisis.</h6>
+                                    </center>
+                                    <table class="table table-hover">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Fecha de caducidad</th>
+                                                <th>No.de Lote(Tira Reactiva)</th>
+                                                <th>Resultado Preliminar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Analisis que Recibe y Procesa Muestra</th>
+                                                <th></th>
+                                                <th>Firma</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <center>
+                                        <h6>Transporte externo, solo cuando se indique.</h6>
+                                    </center>
+                                    <table class="table table-hover">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Persona que Transporta la Muestra</th>
+                                                <th>Procedencia</th>
+                                                <th>Fecha y Hora</th>
+                                                <th>Firma</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Persona que Recibe la Muestra</th>
+                                                <th>Procedencia</th>
+                                                <th>Fecha y Hora</th>
+                                                <th>Firma</th>
+                                                <th>Observaciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+
+                                    <h6 class="text-center mt-2">
+                                        ____________________________________________
+                                        <br>RESPONSABLE DE LABORATORIO</br>
+                                        <br>L.B.G. ELDA LOZANO ARMENDARÍZ CED. 11070994</br>
+                                        <center>
+                                            <img style="float:center; "
+                                                 src='/Laboratorio/static/description/Recurso 3.png'/>
+
+                                        </center>
+                                        <center>
+                                                 <p>sria.part.ssp@nuevoleon.gob.mx | www.nl.gob/seguridad.mx
+                                                <br>Félix U. Gómez 2223 Norte, Col Reforma, 64450, Monterrey, Nuevo
+                                                    León. |
+                                                </br>
+                                                <br>Tel.8120203600 @seguridadNL</br>
+                                            </p>
+                                        </center>
+
+                                    </h6>
+
+
+                                </div>
+                                <!--fin de prueba1-->
+
+                            </div>
+                        </t>
+                    </t>
+                </t>
+                <style>
+                    td, th{border:solid 1px;text-align:center;}
+                    }
+                </style>
+
+
+                <!-- fin style-->
+
+            </div>
+
+        </t>
+
+
+    </template>
+</odoo>

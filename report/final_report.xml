@@ -1,0 +1,348 @@
+<odoo>
+    <report
+            id="action_Antido_custodia_report"
+            model="recepcion.recepcion"
+            string="Final"
+            report_type="qweb-pdf"
+            name="Laboratorio.final_report_template"
+
+    />
+
+
+    <template id="final_report_template">
+        <t t-call="web.html_container">
+            <div class="page">
+
+                <t t-name="web.preview_externalreport">
+                    <t t-set="company" t-value="env.company"/>
+                    <t t-call="web.html_container">
+                        <t t-set="o" t-value="res_company"/>
+                        <!--t t-call="web.external_layout"-->
+                            <t t-call="web.basic_layout">
+                            <center>
+                                <img style="float:left;" src='/Laboratorio/static/description/img.png'/>
+                                <img style="float:right;" src='/Laboratorio/static/description/s1.png'/>
+                            </center>
+                            <div class="page">
+                                <center>
+                                       <p>Gobierno de Nuevo León
+                                        Secretaría de Seguridad Del Estado de Nuevo León
+                                        Laboratorio de Análisis Clínicos “Seguridad Civil”
+                                    </p>
+                                    <p>RESULTADOS DE LABORATORIO</p>
+                                </center>
+                                <div class="col-xs-8">
+                                    <table class="table table-condesed" style="border: 3px solid black !important;">
+                                        <t t-foreach="docs" t-as="o">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <span class="small">Folio</span>
+                                                        <h6 class="font-weight-bold" t-field="o.folio"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Numero de Empleado</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre1"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Nombre Completo</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Sexo</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre2"></h6>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <span class="small">Fecha de Nacimiento</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre3"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Edad</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre4"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Identificacion</span>
+                                                        <h6 class="font-weight-bold" t-field="o.motivo_de_examen"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Motivo del Examen</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.identificacion_que_presenta"></h6>
+                                                    </div>
+
+                                                </div>
+                                                <hr/>
+                                                <div class="row">
+
+                                                    <div class="col-12 border-left">
+                                                        <div class="row">
+
+                                                            <!--fin_prueba5-->
+                                                            <!--contenido_text_-->
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </t>
+
+                                    </table>
+
+                                    <!--prueba-->
+                                    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+                                    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+                                    <table class="table table-hover">
+
+                                        <center>
+                                            <p>DETECCIÓN DE SUSTANCIAS ILEGALES</p>
+                                        </center>
+                                    </table>
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr class="gold-on-gold">
+                                                <th>METABOLITO</th>
+                                                <th>RESULTADO</th>
+                                                <th>VALORES DE REFERENCIA</th>
+                                                <th>COMENTARIOS</th>
+                                            </tr>
+                                        </thead>
+                                        <style>.gold-on-gold {
+                                            text-shadow: rgba(0,0,0,0.1) -1px 0, rgba(0,0,0,0.1) 0 -1px,
+                                            rgba(255,255,255,0.1) 1px 0, rgba(255,255,255,0.1) 0 1px,
+                                            rgba(0,0,0,0.1) -1px -1px, rgba(255,255,255,0.1) 1px 1px;
+                                            color: black;
+                                            background:#85C1E9;
+                                            }
+                                        </style>
+                                        <!--prueba1-->
+                                        <tr>
+                                            <th>CANNABIS</th>
+                                            <td>
+                                                <span t-field="o.canabis"/>
+                                            </td>
+                                            <td>Negativo</td>
+                                            <td>
+                                                <span t-field="o.comentario"/>
+                                            </td>
+                                        </tr>
+                                        <!--prueba3-->
+                                        <tr>
+                                            <th>COCAÍNA
+                                            </th>
+                                            <td>
+                                                <span t-field="o.cocaina"/>
+                                            </td>
+                                            <td>Negativo</td>
+                                            <td>
+                                                <span t-field="o.comentario1"/>
+                                            </td>
+                                        </tr>
+                                        <!--fin_prueba3-->
+                                        <!--prueba4-->
+                                        <tr>
+                                            <th>ANFETAMINAS</th>
+
+                                            <td>
+                                                <span t-field="o.anfetaminas"/>
+                                            </td>
+                                            <td>Negativo</td>
+                                            <td>
+                                                <span t-field="o.comentario2"/>
+                                            </td>
+                                        </tr>
+                                        <!--fin_prueba4-->
+                                        <!--prueba4-->
+                                        <tr>
+                                            <th>BARBITÚRICOS</th>
+
+                                            <td>
+                                                <span t-field="o.barbituricos"/>
+                                            </td>
+                                            <td>Negativo</td>
+                                            <td>
+                                                <span t-field="o.comentario3"/>
+                                            </td>
+                                        </tr>
+                                        <!--fin_prueba4-->
+                                        <tr>
+                                            <th>BENZODIACEPINAS</th>
+
+                                            <td>
+                                                <span t-field="o.benzodiacepinas"/>
+                                            </td>
+                                            <td>Negativo</td>
+                                            <td>
+                                                <span t-field="o.comentario4"/>
+                                            </td>
+                                        </tr>
+                                        <!--prueba5-->
+
+
+                                    </table>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <p>Método: Inmunoensayo cromatográfico rápido</p>
+                                    <p>Muestra: Orina.</p>
+
+
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+
+
+
+
+                                    <div id="cuadrotexto">
+                                        <p class="alinearizq">
+                                            <br>_________________________________</br>
+                                            <br>Valido</br>
+                                            <br>Q.C.B.Roberto Antonio Ortiz Treviño</br>
+                                            <br>CDE.9770137</br>
+                                        </p>
+                                        <p class="alinearder">
+                                            <br>____________________________________</br>
+                                            <br>Responsable de Laboratorio</br>.
+                                            <br>LBG.Elda Lozano Armendariz</br>
+                                            <br>CDE.11070994</br>
+                                        </p>
+                                    </div>
+                                    <style>.alinearizq {
+                                        float: left;
+                                        }
+                                        .alinearder {
+                                        float: right;
+                                        }
+                                    </style>
+                                    <div style="clear: both;"></div>
+
+                                    <center>
+                                        <img style="float:center; "
+                                             src='/Laboratorio/static/description/Recurso 3.png'/>
+
+                                    </center>
+                                    <center>
+                                        <p>sria.part.ssp@nuevoleon.gob.mx | www.nl.gob/seguridad.mx
+                                            <br>Félix U. Gómez 2223 Norte, Col Reforma, 64450, Monterrey, Nuevo León.
+                                                |
+                                            </br>
+                                            <br>Tel.8120203600 @seguridadNL</br>
+                                        </p>
+                                    </center>
+                                </div>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <!--fin de prueba1 de imagen-->
+                                <center>
+                                    <img style="float:left;" src='/Laboratorio/static/description/img.png'/>
+                                    <img style="float:right;" src='/Laboratorio/static/description/s1.png'/>
+                                </center>
+                                <center>
+                                       <p>Gobierno de Nuevo León
+                                        Secretaría de Seguridad Del Estado de Nuevo León
+                                        Laboratorio de Análisis Clínicos “Seguridad Civil”
+                                    </p>
+                                    <p>RESULTADOS DE LABORATORIO</p>
+                                </center>
+                                <center>
+                                    <p>DETECCIÓN DE SUSTANCIAS ILEGALES</p>
+                                </center>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+
+                                <div class="col-md-1 col-center">
+                                    <div class="img img-fluid d-flex justify-content-center">
+                                        <!-- <img src="https://picsum.photos/200/300" class="rounded-circle mx-auto d-block" style="width:150px; height: 150px; "/> -->
+                                        <!-- <img  t-attf-src="data:image/*;base64,{{o.image_1920}}" class="rounded-circle mx-auto d-block" style="width:150px; height: 150px; "/> -->
+                                        <img t-if="o.foto" t-att-src="image_data_uri(o.foto)"
+                                             class="rounded mx-auto d-block"
+                                             style="width:350px; height: 350px;" alt=" Image"/>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+
+
+
+
+                                <div id="cuadrotexto">
+                                    <p class="alinearizq">
+                                        <br>_________________________________</br>
+                                        <br>Valido</br>
+                                        <br>Q.C.B.Roberto Antonio Ortiz Treviño</br>
+                                        <br>CDE.9770137</br>
+                                    </p>
+                                    <p class="alinearder">
+                                        <br>____________________________________</br>
+                                        <br>Responsable de Laboratorio</br>.
+                                        <br>LBG.Elda Lozano Armendariz</br>
+                                        <br>CDE.11070994</br>
+                                    </p>
+                                </div>
+                                <style>.alinearizq {
+                                    float: left;
+                                    }
+                                    .alinearder {
+                                    float: right;
+                                    }
+                                </style>
+                                <div style="clear: both;"></div>
+
+                                <center>
+                                    <img style="float:center; "
+                                         src='/Laboratorio/static/description/Recurso 3.png'/>
+                                </center>
+                                <center>
+                                    <p>sria.part.ssp@nuevoleon.gob.mx | www.nl.gob/seguridad.mx
+                                        <br>Félix U. Gómez 2223 Norte, Col Reforma, 64450, Monterrey, Nuevo León. |</br>
+                                        <br>Tel.8120203600 @seguridadNL</br>
+                                    </p>
+                                </center>
+
+                                <!-- finprueba-->
+                            </div>
+                        </t>
+                    </t>
+                </t>
+                <style>
+                    td, th{border:solid 1px;text-align:center;}
+                    }
+                </style>
+
+
+                <!-- fin style-->
+
+            </div>
+
+        </t>
+
+
+    </template>
+</odoo>

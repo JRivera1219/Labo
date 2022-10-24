@@ -1,0 +1,233 @@
+<odoo>
+    <record model="ir.ui.view" id="view_tree_Laboratorio">
+        <field name="name">view.tree.Laboratorio</field>
+        <field name="model">recepcion.recepcion</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="fecha"/>
+                <field name="folio"/>
+                <field name="nombre_completo"/>
+                <field name="responsable_nombre"/>
+                <field name="responsable_nombre1"/>
+                <field name="responsable_nombre2"/>
+                <field name="responsable_nombre3"/>
+                <field name="departamento"/>
+                <field name="examen_a_realizar"/>
+                <field name="lugar_de_muestra"/>
+                <field name="identificacion_que_presenta"/>
+                <field name="motivo_de_examen"/>
+                <field name="consume_medicamentos"/>
+                <field name="nombre_del_medicamento"/>
+                <field name="motivo_de_consumo"/>
+                <field name="nombre_del_medico"/>
+                <field name="observaciones"/>
+                <!--procesodeantidoping-->
+                <field name="hora" />
+                <field name="quien_tomo_muestra"/>
+                <field name="quien_analizo"/>
+                <field name="canabis"/>
+                <field name="comentario"/>
+                <field name="cocaina"/>
+                <field name="comentario1"/>
+                <field name="anfetaminas"/>
+                <field name="comentario2"/>
+                <field name="barbituricos"/>
+                <field name="comentario3"/>
+                <field name="benzodiacepinas"/>
+                <field name="comentario4"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_Laboratorio_form" model="ir.ui.view">
+        <field name="name">Laboratorio.form</field>
+        <field name="model">recepcion.recepcion</field>
+        <field name="priority" eval="8"/>
+        <field name="arch" type="xml">
+      <!--center>
+                            <img style="float:left;" src='/Laboratorio/static/description/img.png'/>
+                            <img style="float:right;" src='/Laboratorio/static/description/s1.png'/>
+                        </center-->
+
+            <form string="Laboratorio">
+
+
+                <sheet>
+                    <!-- Inicio -->
+                    <div id="wrap" class="container">
+
+                        <h1 class="text-center mt-2">
+                            Laboratorio De Análisis Clínicos
+                        </h1>
+
+                    </div>
+                    <!-- fin -->
+                    <!--field name="foto" widget="image" class="oe_left oe_avatar"/-->
+                    <div class="oe_title">
+                        <h1>
+
+                            <table>
+
+                                <tr>
+
+                                    <td style="padding-right:10px;">
+                                        <field name="fecha" placeholder="Fecha"/>
+                                    </td>
+                                    <!--td style="padding-right:10px;">
+                                        <field name="no" placeholder="No_Folio" style="background:Orange;"/>
+                                    </td-->
+                                    <td style="padding-right:10px;">
+                                        <field name="nombre_completo"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h1>
+                    </div>
+                    <notebook colspan="5">
+                        <page name="personal_information"
+                              string="Información Del Empleado">
+                            <group col="5" colspan="5"
+                                   name="personal_detail">
+                                <field name="folio"/>
+                                <field name="responsable_nombre1"/>
+                                <field name="responsable_nombre2"/>
+                                <field name="responsable_nombre3"/>
+                                <field name="responsable_nombre4"/>
+                                <field name="departamento"/>
+                                <field name="examen_a_realizar"/>
+                                <field name="lugar_de_muestra"/>
+                                <field name="identificacion_que_presenta"/>
+                                <field name="motivo_de_examen"/>
+                                <field name="consume_medicamentos"/>
+                                <field name="nombre_del_medicamento"/>
+                                <field name="motivo_de_consumo"/>
+                                <field name="nombre_del_medico"/>
+                                <field name="observaciones"/>
+
+                            </group>
+                            <!--STYLE>
+                                .hideable { position: relative; visibility: visible; }
+                            </STYLE-->
+                            <!--SCRIPT>
+                                function mostrar_ocultar(hide) {
+                                if (document.layers)
+                                document.contenido.visibility = hide ? 'hidden' : 'show';
+                                else {
+                                var g = document.all ? document.all.contenido :
+                                document.getElementById('contenido');
+                                g.style.visibility = hide ? 'hidden' : 'visible';
+                                }
+                                }
+
+                            </SCRIPT-->
+
+
+                            <!--INPUT TYPE="checkbox" NAME="Accion"
+                                   ONCLICK="mostrar_ocultar(this.checked);"/-->
+
+                            <!--SPAN ID="contenido" CLASS=""-->
+
+                                <notebook colspan="5">
+                                    <page name="personal_information"
+                                          string="Reporte Final del Antidoping">
+                                        <group col="5" colspan="5"
+                                               name="personal_detail">
+                                            <field name="clv" string="Proceso De Antidoping"/>
+                                            <field name="hora"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="quien_tomo_muestra"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="quien_analizo"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="canabis"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="comentario"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="cocaina"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="comentario1"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="anfetaminas"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="comentario2"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="barbituricos"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="comentario3"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="benzodiacepinas"  attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="comentario4"   attrs="{'invisible':[('clv','!=',True)]}"/>
+                                            <field name="foto" widget="image" class="oe_left oe_avatar"  attrs="{'invisible':[('clv','!=',True)]}"/>
+
+                                        </group>
+
+                                    </page>
+                                </notebook>
+                            <!--/SPAN-->
+                            <!-- Inicio -->
+                            <div id="wrap" class="container">
+
+                                <h3 class="text-center mt-2">
+
+                                    <!--P>____________________________________________</P-->
+                                    <P>RESPONSABLE DE LABORATORIO</P>
+                                    <P>L.B.G. ELDA LOZANO ARMENDARÍZ CED. 11070994</P>
+                                </h3>
+                                <center>
+                                    <img style="float:center; "
+                                         src='/Laboratorio/static/description/Recurso 3.png'/>
+
+                                </center>
+                            </div>
+
+                            <!-- fin -->
+                            <!--center>
+                                <img style="float:left;" src='/laboratorio/static/description/img_1.png'/>
+                                <img style="float:right;" src='/laboratorio/static/description/img.png'/>
+                            </center-->
+                            <!--img class = "img img-responsive" src ='/laboratorio/static/description/img.png' height = "120px" width = "120px" /-->
+
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- para  busqueda por  folio-->
+    <record id="recepcion_test_search" model="ir.ui.view">
+        <field name="name">Busqueda</field>
+        <field name="model">recepcion.recepcion</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="folio"/>
+                <field name="responsable_nombre"/>
+                <field name="responsable_nombre1"/>
+
+            </search>
+        </field>
+    </record>
+    <!-- fin para  busqueda por  folio-->
+
+    <!--codigo del folio-->
+    <record id="seq_library_card" model="ir.sequence">
+        <field name="name">Library Card</field>
+        <field name="code">library.card</field>
+        <field name="prefix">0</field>
+        <field name="padding">2</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <!---fin de funcion-->
+
+    <record model="ir.actions.act_window" id="action_view_Laboratorio">
+        <field name="name">Laboratorio Clinico</field>
+        <field name="res_model">recepcion.recepcion</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <!-- Top menu item -->
+    <menuitem id="menu_Recepcion_root" parent="" action="Laboratorio.action_view_Laboratorio"
+              name="Laboratorio Clinico"
+              sequence="10"
+              web_icon="Laboratorio,static/description/icon.png"
+
+    />
+
+
+
+</odoo>

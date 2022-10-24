@@ -1,0 +1,284 @@
+<odoo>
+    <report
+            id="action_Laboratorio_empleas_report"
+            model="recepcion.recepcion"
+            string="EXAMEN TOXICOLÓGICO"
+            report_type="qweb-pdf"
+            name="Laboratorio.empleas_report_template"
+            file="Laboratorio.empleas_report_template"
+
+    />
+
+<!--hh-->
+    <record id="paperformat_custom1" model="report.paperformat">
+        <field name="name">Reporte Toxicologico</field>
+        <field name="format">Letter</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+        <field name="default" eval="True" />
+
+    </record>
+
+
+    <template id="empleas_report_template">
+        <t t-call="web.html_container">
+            <div class="page">
+                <h2>Reporte del Empleado</h2>
+                <br/>
+                <!--style-->
+
+                <t t-name="web.preview_externalreport">
+                    <t t-set="company" t-value="env.company"/>
+                    <t t-call="web.html_container">
+                        <t t-set="o" t-value="res_company"/>
+                        <t t-call="web.basic_layout">
+                            <div class="page">
+                                <center>
+                                    <img style="float:left;" src='/Laboratorio/static/description/img.png'/>
+                                    <img style="float:right;" src='/Laboratorio/static/description/s1.png'/>
+                                </center>
+                                <center>
+                                    <p>Gobierno de Nuevo León
+                                        Secretaría de Seguridad Del Estado de Nuevo León
+                                        Laboratorio de Análisis Clínicos “Seguridad Civil”
+                                    </p>
+                                    <p>
+                                        EXAMEN TOXICOLÓGICO
+                                        CONSENTIMIENTO
+                                    </p>
+                                    <p>Informacion del Personal a Evaluar</p>
+                                </center>
+                                <!--prueba1-->
+
+                                <div class="col-xs-8">
+                                    <table class="table table-condesed" style="border: 3px solid black !important;">
+                                        <!--table class="table table-condensed" style="border: 3px solid black !important;"-->
+                                        <center>
+                                            <!--img style="float:left; " src='/Laboratorio/static/description/img_1.png'/-->
+                                            <!--img style="float:right;" src='/Laboratorio/static/description/img.png'/-->
+                                        </center>
+                                        <t t-foreach="docs" t-as="o">
+
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <span class="small">Folio</span>
+                                                        <h6 class="font-weight-bold" t-field="o.folio"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Numero de Empleado</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre1"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Nombre Completo</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Sexo</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre2"></h6>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <span class="small">Fecha de Nacimiento</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre3"></h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <span class="small">Edad</span>
+                                                        <h6 class="font-weight-bold"
+                                                            t-field="o.responsable_nombre4"></h6>
+                                                    </div>
+
+                                                </div>
+
+                                                <hr/>
+                                                <div class="row">
+
+                                                    <div class="col-12 ">
+                                                        <!--h4 class="text-center bg-dark text-white">Información del personal a evaluar. </h4-->
+                                                        <div class="row">
+
+                                                            <p class="text-justify">
+                                                                Por medio de la presente manifiesto mi conformidad
+                                                                para que se me practique el examen toxicologico a
+                                                                efecto de cumplir con los ordenamientos que
+                                                                requieren la aplicación de esta evaluacion de
+                                                                conformidad con los siguientes documentos oficiales:
+                                                                Artículos 23, 150, 155, 158, 223, 198 Bis 27, 198
+                                                                Bis 28, 198 Bis 29 y 198 Bis 9 de la Ley de
+                                                                Seguridad Pública para el Estado de Nuevo leon.
+                                                                Articulo 42 del reglamento Interno de la Secretaria
+                                                                de Seguridad Publica del Estado de Nuevo Leon;
+                                                                articulos 88 y 108 de la Ley General del Sistema
+                                                                Nacional de seguridad Publica; articulo 29 y 44 de
+                                                                la Ley de la Institucion Policial Estatal Fuerza
+                                                                Civil y demas Leyes Normativas y Reglamentos
+                                                                aplicables.
+
+                                                            </p>
+
+                                                            <tr>
+                                                                <th>Lugar de toma de muestra</th>
+                                                                <td>
+                                                                    <span t-field="o.lugar_de_muestra"/>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>¿Consume algún medicamento?</th>
+                                                                <td>
+                                                                    <span t-field="o.consume_medicamentos"/>
+                                                                </td>
+                                                            </tr>
+                                                            <!--prueba3-->
+                                                            <tr>
+                                                                <th>En caso de afirmación, indique el nombre del
+                                                                    medicamento
+                                                                </th>
+                                                                <td>
+                                                                    <span t-field="o.nombre_del_medicamento"/>
+                                                                </td>
+                                                            </tr>
+                                                            <!--fin_prueba3-->
+                                                            <!--prueba4-->
+                                                            <tr>
+                                                                <th>Motivo por el cual toma el medicamento</th>
+
+                                                                <td>
+                                                                    <span t-field="o.motivo_de_consumo"/>
+                                                                </td>
+                                                            </tr>
+                                                            <!--fin_prueba4-->
+                                                            <!--prueba5-->
+                                                            <tr>
+                                                                <th>Nombre del médico o institución que indicó el
+                                                                    medicamento:
+                                                                </th>
+
+                                                                <td>
+                                                                    <span t-field="o.nombre_del_medico"/>
+                                                                </td>
+                                                            </tr>
+                                                            <!--fin_prueba5-->
+                                                            <!--contenido_text_-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </t>
+
+                                    </table>
+                                    <div id="wrap" class="container">
+                                        <p class="text-justify">
+                                            He sido informado(a) que la instancia donde me esta
+                                            practicando la Evaluacion Toxicologica es
+                                            exclusivamente
+                                            Evaluadora las decisiones que en su caso se tomen
+                                            sobre mi
+                                            situacion laboral o sobre mi contratacion son facultad
+                                            y
+                                            responsabilidad unicamente de la dependencia en la que
+                                            laboro o pretendo laborar, la cual es solicitante de
+                                            la
+                                            realizacion de este proceso.
+                                            <br>• He leido y comprendido el contenido de este formato</br>
+                                            <br>• He contestado todas las secciones de acuerdo con mi conocimiento</br>
+                                            <br>• Las muestras que me sean tomadas para el estudio(cabello,orina y/o
+                                                sangre)
+                                                seran recolectadas en presencia de un supervisor ocular de esta misma
+                                            </br>
+                                            direccion y seran selladas y etiquetadas bajo mi supervicion.
+                                            <br>• De obtenerse un resultado no satisfactorio en la prueba rápida,
+                                                autorizo
+                                                que se practique el estudio toxicológico confirmatorio en el laboratorio
+                                                que
+                                                la institución para la cual laboro determine.
+                                            </br>
+                                        </p>
+
+
+                                        <div id="cuadrotexto">
+                                            <p class="alinearizq">
+                                                <br>______________________</br>
+                                                <br>NOMBRE Y FIRMA</br>
+                                            </p>
+                                            <p class="alinearder">
+                                                <br>______________________</br>
+                                                <br>HUELLA DACTILAR</br>.
+                                            </p>
+                                        </div>
+                                        <style>.alinearizq {
+                                            float: left;
+                                            }
+                                            .alinearder {
+                                            float: right;
+                                            }
+                                        </style>
+                                        <div style="clear: both;"></div>
+
+
+                                        <h6 class="text-center mt-2">
+                                            <br>____________________________________________</br>
+                                            <br>RESPONSABLE DE LABORATORIO</br>
+                                            <br>L.B.G. ELDA LOZANO ARMENDARÍZ CED. 11070994</br>
+
+                                        </h6>
+                                        <center>
+                                            <p class="text-justify">Toda la información recabada para este examen es
+                                                estrictamente reservada y confidencial en los términos de la Ley de
+                                                Transparencia y Acceso a la Información del Estado de Nuevo León y los
+                                                documentos propios de esta evaluación se encuentran viculados a los
+                                                proceso de ingreso y permanencia.
+                                            </p>
+                                        </center>
+                                        <center>
+                                            <img style="float:center; "
+                                                 src='/Laboratorio/static/description/Recurso 3.png'/>
+
+
+                                        </center>
+                                        <center>
+                                            <p>sria.part.ssp@nuevoleon.gob.mx | www.nl.gob/seguridad.mx
+                                                <br>Félix U. Gómez 2223 Norte, Col Reforma, 64450, Monterrey, Nuevo
+                                                    León. |
+                                                </br>
+                                                <br>Tel.8120203600 @seguridadNL</br>
+                                            </p>
+                                        </center>
+
+
+                                    </div>
+
+                                </div>
+                                <!--fin de prueba1-->
+
+                            </div>
+                        </t>
+                    </t>
+                </t>
+                <style>
+                    td, th{border:solid 1px;text-align:center;}
+                    }
+                </style>
+
+
+                <!-- fin style-->
+
+            </div>
+
+        </t>
+
+
+    </template>
+</odoo>
